@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back-outline" slot="start" (click)="closeModal()"></ion-icon>
+    <ion-title *ngIf="tipo === 'post'">Nova Publicação</ion-title>
+    <ion-title *ngIf="tipo === 'arquivo'">Novo Arquivo</ion-title>
+    <span slot="end" (click)="salvar()">Salvar</span>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Tipo</ion-label>
+    <ion-select interface="popover" [(ngModel)]="tipo">
+      <ion-select-option value="post">Publicação</ion-select-option>
+      <ion-select-option value="arquivo">Arquivo</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="tipo === 'post'">
+    <ion-label>Titulo:</ion-label>
+    <ion-input [(ngModel)]="form.titulo"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="tipo === 'post'">
+    <ion-label>Descricao</ion-label>
+    <textarea [(ngModel)]="form.descricao" name="" id="" cols="30" rows="10"></textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Anexos</ion-label>
+  </ion-item>
+
+  <ion-grid class="files-grid">
+    <ion-row class="files-row">
+      <div *ngFor="let file of arquivos; let i = index">
+        <ion-card class="file-card">
+          <ion-badge color="danger"><ion-icon name="close" (click)="removerArquivo(i)"></ion-icon></ion-badge>
+          <ion-card-content>
+            <ion-icon name="document"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+  
+        <ion-label>{{i}} - {{file.name}}</ion-label>
+      </div>
+    </ion-row>
+  
+    <ion-row>
+      <ion-fab-button (click)="file.click()">
+        <ion-icon name="add">
+        </ion-icon>
+      </ion-fab-button>
+      <input type="file" #file (change)="selecionarArquivo($event)" multiple name="image" style="display: none;" />
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

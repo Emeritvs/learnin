@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+    <ion-title>Matérias</ion-title>
+    <ion-icon name="add-outline" slot="end" (click)="criarMateria()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-grid>
+  <ion-row>
+
+    <ion-col *ngFor="let item of materiasList">
+      <ion-card (click)="abrirMateria(item)">
+        <ion-card-header>
+          <ion-card-subtitle>{{item.data.nome}}</ion-card-subtitle>
+          <ion-card-title>{{item.data.nome}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+
+  </ion-row>
+</ion-grid>

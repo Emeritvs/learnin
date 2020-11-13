@@ -1,0 +1,22 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4">
+        <ion-label class="title">Criar Conta</ion-label>
+
+        <ion-item>
+          <ion-input [(ngModel)]="signData.email" placeholder="Email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input type="password" [(ngModel)]="signData.password" placeholder="Senha" required></ion-input>
+        </ion-item>
+
+        <ion-button [disabled]="signData.email.length == 0 && signData.password.length < 6"  (click)="cadastrar()">Cadastrar</ion-button>
+        <div class="redirectToLogin">
+          <span>Already have an account? <span class="redirect" routerLink="/login">Log In</span></span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

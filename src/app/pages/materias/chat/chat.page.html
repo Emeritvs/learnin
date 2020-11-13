@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="arrow-back-outline" slot="start" (click)="closeModal()"></ion-icon>
+    <ion-title>Mensagens de {{data.nome}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row *ngFor="let message of messages; let i = index">
+      <ion-item [ngClass]="(message.data.id == currentUser)?'message_right':'message_left'">
+        <ion-label>
+          <h3>{{message.data.displayName}}</h3>
+          <p>{{message.data.message}}</p>
+          <p class="timestamp">{{message.data.createAt / 1000}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input [(ngModel)]="input"></ion-input>
+    <ion-button slot="end" (click)="sendMessage()">Enviar</ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,68 @@
+<ion-header color="learnin-primary">
+  <ion-toolbar color="learnin-primary">
+    <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+    <ion-title>Meus Dados</ion-title>
+    <ion-icon name="add-outline" slot="end" (click)="atualizarDados()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img src="https://lirp-cdn.multiscreensite.com/md/unsplash/dms3rep/multi/opt/photo-1457410129867-5999af49daf7-640w.jpg" alt="">
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h3>Guilherme Augusto</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>ID: 1436456</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-list-header>
+            Tema
+          </ion-list-header>
+  
+          <ion-list>
+            <ion-item>
+              <ion-label>Modo Escuro</ion-label>
+              <ion-toggle slot="end" id="themeToggle" [checked]="dark_mode" color="learnin-primary" (ionChange)="escuro(dark_mode)"></ion-toggle>
+            </ion-item>
+          </ion-list>
+
+          <ion-item>
+            <ion-label>Cor Primária</ion-label>
+            <ion-badge slot="end" [ngStyle]="{'background': user.theme.color1 }">
+              <ion-input type="color" #primary [(ngModel)]="user.theme.color1"></ion-input>
+            </ion-badge>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Cor Secundária</ion-label>
+            <ion-badge slot="end" [ngStyle]="{'background': user.theme.color2 }">
+              <ion-input type="color" #secondary [(ngModel)]="user.theme.color2"></ion-input>
+            </ion-badge>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Cor Tertiária</ion-label>
+            <ion-badge slot="end" [ngStyle]="{ 'background': user.theme.color3 }">
+              <ion-input type="color" #tertiary [(ngModel)]="user.theme.color3"></ion-input>
+            </ion-badge>
+          </ion-item>
+
+        </ion-list>
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
