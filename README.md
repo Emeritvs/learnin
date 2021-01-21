@@ -26,15 +26,25 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## 💻 Projeto
+O Learnin é uma plataforma onde realiza a conexão entre alunos e docentes no processo de envio de atividades, materiais de estudo e dúvidas.💜
+A ideia do projeto foi desenvolver uma aplicação web que seja armazenada em algum dos serviços de nuvem disponíveis atualmente, o escolhido foi o Firebase.
+- [Versão Web Funcional](projeto-sdv.web.app)
+- [Versão App] Para testar a versão app (PWA) do site, será necessário executar os passos do tópico <a href="#-tecnologias">Instalação/Configuração</a>.
 
-O Happy é uma aplicação que conecta pessoas à casas de acolhimento institucional para fazer o dia de muitas crianças mais feliz 💜
+## 🔖 Instalação/Configuração
+
+Para executar o projeto em sua máquina/dispostivo, serão necessários os seguintes recursos instalados:
+
+- [Layout Web](Em breve)
+- [Layout Web](Em breve)
+- [Layout Mobile](Em breve)
 
 ## 🔖 Layout
 
 Nos links abaixo você encontra o layout do projeto web e também do mobile. Lembrando que você precisa ter uma conta no [Figma](http://figma.com/) para acessá-lo.
 
-- [Layout Web](https://www.figma.com/file/mDEbnoojksG4w8sOxmudh3/Happy-Web)
-- [Layout Mobile](https://www.figma.com/file/X27FfVxAgy9f5IFa7ONlph/Happy-Mobile)
+- [Layout Web](Em breve)
+- [Layout Mobile](Em breve)
 
 
 ## :memo: Licença
@@ -43,4 +53,4 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para
 
 ---
 
-Projeto feito por Guilherme Gomes (Emeritvs) baseado no mini curso NextLevelWeek 3 realizado pela Rocketseat :wave:
+Projeto feito por Guilherme Gomes (Emeritvs) para a matéria de Redes e Sistemas Distribuídos durante a faculdade de Ciência da Computação :wave:
