@@ -35,16 +35,16 @@ A ideia do projeto foi desenvolver uma aplicação web que seja armazenada em al
 
 Para executar o projeto em sua máquina/dispostivo, serão necessários os seguintes recursos instalados:
 
-- [Layout Web](Em breve) [Em breve]
-- [Layout Web](Em breve) [Em breve]
-- [Layout Mobile](Em breve) [Em breve]
+- [Layout Web](Em breve)
+- [Layout Web](Em breve) 
+- [Layout Mobile](Em breve) 
 
 ## 🔖 Layout
 
 Nos links abaixo você encontra o layout do projeto web e também do mobile. Lembrando que você precisa ter uma conta no [Figma](http://figma.com/) para acessá-lo.
 
-- [Layout Web](Em breve) [Em breve]
-- [Layout Mobile](Em breve) [Em breve]
+- [Layout Web](Em breve)
+- [Layout Mobile](Em breve)
 
 
 ## :memo: Licença
