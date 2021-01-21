@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Happy" title="Happy" src=".github/logo.svg" />
+    <img alt="LearnIn" title="Learnin" src=".github/logo.svg" />
 </h1>
 
 <p align="center">
@@ -19,10 +19,10 @@
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-- [Node.js](https://nodejs.org/en/)
-- [React](https://reactjs.org)
-- [React Native](https://facebook.github.io/react-native/)
-- [Expo](https://expo.io/)
+- [Firebase](https://nodejs.org/en/)
+- [Angular](https://angular.io)
+- [Capacitor](https://capacitorjs.com)
+- [Ionic](https://ionicframework.com)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## 💻 Projeto
@@ -35,16 +35,16 @@ A ideia do projeto foi desenvolver uma aplicação web que seja armazenada em al
 
 Para executar o projeto em sua máquina/dispostivo, serão necessários os seguintes recursos instalados:
 
-- [Layout Web](Em breve)
-- [Layout Web](Em breve)
-- [Layout Mobile](Em breve)
+- [Layout Web](Em breve) [Em breve]
+- [Layout Web](Em breve) [Em breve]
+- [Layout Mobile](Em breve) [Em breve]
 
 ## 🔖 Layout
 
 Nos links abaixo você encontra o layout do projeto web e também do mobile. Lembrando que você precisa ter uma conta no [Figma](http://figma.com/) para acessá-lo.
 
-- [Layout Web](Em breve)
-- [Layout Mobile](Em breve)
+- [Layout Web](Em breve) [Em breve]
+- [Layout Mobile](Em breve) [Em breve]
 
 
 ## :memo: Licença
