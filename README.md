@@ -5,6 +5,7 @@
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-instalação">Instalação</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-licença">Licença</a>
 </p>
@@ -29,7 +30,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 O Learnin é uma plataforma onde realiza a conexão entre alunos e docentes no processo de envio de atividades, materiais de estudo e dúvidas.💜
 A ideia do projeto foi desenvolver uma aplicação web que seja armazenada em algum dos serviços de nuvem disponíveis atualmente, o escolhido foi o Firebase.
 - [Versão Web Funcional](projeto-sdv.web.app)
-- [Versão App] Para testar a versão app (PWA) do site, será necessário executar os passos do tópico <a href="#-instalação">Instalação/Configuração</a>.
+- [Versão App] Para testar a versão app (PWA) do site, será necessário executar os passos do tópico <a href="#-instalação">Instalação</a>.
 
 ## 🔖 Instalação
 
