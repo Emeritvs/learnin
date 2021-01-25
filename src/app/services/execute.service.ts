@@ -14,6 +14,7 @@ export class ExecuteService {
 
   functionExecute(functionName:string,params:any)
   {
+    console.log('execute')
     this.carregarParametros(params);
 
     const param = {

@@ -24,6 +24,7 @@ export class MateriasService {
           data: a.payload.doc.data() as any,
         };
 
+        dados.data.color = this.getRandomColor();
         return dados;
       }))
 
@@ -40,7 +41,16 @@ export class MateriasService {
 
   }
 
-  apagar(){
-
+  apagar(id : string){
+    return this.DB.collection("materias").doc(id).delete();
   }
+
+  getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }  
 }

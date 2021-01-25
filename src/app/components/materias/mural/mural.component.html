@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-icon name="arrow-back-outline" slot="start" (click)="voltar()"></ion-icon>
+  <ion-toolbar color="learnin-primary">
+    <ion-buttons slot="start" *ngIf="device === 'desktop'"><ion-menu-button></ion-menu-button></ion-buttons>
     <ion-title> {{ data.data.nome }} - Mural</ion-title>
-    <ion-icon name="add-outline" slot="end" (click)="publicar()"></ion-icon>
+    <ion-icon *ngIf="currentUser.role === 'admin'"  name="add-outline" slot="end" (click)="publicar()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
@@ -12,43 +12,98 @@
   </ion-fab-button>
 </ion-fab>
 
-<ion-content>
+<ion-content color="learnin-secondary" style="height: calc(100vh - 44px);">
+  <ion-list>
+    <ion-item (click)="showAlunos()">
+      <ion-label>
+        <span slot="start">Alunos</span>
+        <ion-icon *ngIf="!alunoShow" name="caret-down-outline" slot="end" style="margin-left: auto;"></ion-icon>
+        <ion-icon *ngIf="alunoShow" name="caret-forward-outline" slot="end" style="margin-left: auto;"></ion-icon>
+      </ion-label>
+    </ion-item>
+
+    <ion-list *ngIf="alunoShow">
+      <ion-item *ngIf="currentUser.role === 'admin' && alunos.length > 0" (click)="alunosAdd()">
+        <ion-label class="empty-list">
+          <h3>Adicionar alunos</h3>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="alunos.length === 0">
+        <ion-label class="empty-list">
+          <h3>Não há alunos participando nesta matéria, <span *ngIf="currentUser.role === 'admin'" color="learnin-primary" class="cursor-pointer" (click)="alunosAdd()">Adicionar Aluno.</span></h3>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-sliding *ngFor="let item of alunos; let i = id;" #i>
+        <ion-item (click)="i.open()">
+          <ion-avatar slot="start">
+            <img *ngIf="item.data.user_photo" src="{{item.data.user_photo}}" alt="">
+            <img *ngIf="!item.data.user_photo" src="../../../assets/images/avatar.png" alt="">
+          </ion-avatar>
+          <ion-label>
+            <h3>{{item.data.user_name}}</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger">Unread</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+
+    </ion-list>
+  </ion-list>
+
   <ion-list>
     <ion-item (click)="showArquivos()">
       <ion-label>
-        Arquivos
-        <ion-icon *ngIf="!arquivoShow" name="caret-down-outline" slot="end"></ion-icon>
-        <ion-icon *ngIf="arquivoShow" name="caret-forward-outline" slot="end"></ion-icon>
+        <span slot="start">Arquivos</span>
+        <ion-icon *ngIf="!arquivoShow" name="caret-down-outline" slot="end" style="margin-left: auto;"></ion-icon>
+        <ion-icon *ngIf="arquivoShow" name="caret-forward-outline" slot="end" style="margin-left: auto;"></ion-icon>
       </ion-label>
     </ion-item>
 
     <ion-list *ngIf="arquivoShow">
       <ion-item *ngIf="arquivos.length === 0">
-        <ion-label>
-          <h3>Não há arquivos a serem exibidos, <span style="color: aqua;" (click)="publicar()">Publicar.</span></h3>
+        <ion-label class="empty-list">
+          <h3>Não há arquivos a serem exibidos, <span *ngIf="currentUser.role === 'admin'" class="cursor-pointer" style="color: aqua;" (click)="publicar()">Publicar Arquivo.</span></h3>
         </ion-label>
       </ion-item>
-      <ion-item *ngFor="let item of arquivos" (click)="visualizar(item)">
+
+      <ion-item *ngFor="let item of arquivos" (click)="visualizar(item, 'arquivo')">
         <ion-label>
+          <ion-avatar slot="start"><ion-icon name="document"></ion-icon></ion-avatar>
           <h3>{{item.data.name}}</h3>
           <p>{{item.data.createAt}}</p>
         </ion-label>
       </ion-item>
+
     </ion-list>
   </ion-list>
 
   <ion-list>
     <ion-item (click)="showPosts()">
       <ion-label>
-        Publicações
-        <ion-icon *ngIf="!postShow" name="caret-down-outline" slot="end"></ion-icon>
-        <ion-icon *ngIf="postShow" name="caret-forward-outline" slot="end"></ion-icon>
+        <span slot="start">Publicações</span>
+        <ion-icon *ngIf="!postShow" name="caret-down-outline" slot="end" style="margin-left: auto;"></ion-icon>
+        <ion-icon *ngIf="postShow" name="caret-forward-outline" slot="end" style="margin-left: auto;"></ion-icon>
       </ion-label>
     </ion-item>
 
     <ion-list *ngIf="postShow">
-      <ion-item *ngFor="let item of posts">
+      <ion-item *ngIf="posts.length === 0">
+        <ion-label class="empty-list">
+          <h3>Não há publicações a serem exibidas, <span *ngIf="currentUser.role === 'admin'" class="cursor-pointer" style="color: aqua;" (click)="publicar()">Criar Publicação.</span></h3>
+        </ion-label>
+      </ion-item>
+
+      <ion-item *ngFor="let item of posts" (click)="visualizar(item, 'post')">
         <ion-label>
+          <ion-avatar slot="start">
+            <ion-icon name="newspaper"></ion-icon>
+          </ion-avatar>
+      
           <h3 style="font-weight: bold;">{{item.data.titulo}}</h3>
           <p>{{item.data.descricao}}</p>
         </ion-label>

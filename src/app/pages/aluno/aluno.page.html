@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="learnin-primary">
+    <ion-icon name="close-outline" slot="start" (click)="closeModal()"></ion-icon>
+    <ion-title>Dados do Usuário</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="learnin-secondary" style="height: calc(100vh - 44px);">
+  <ion-grid>
+    <ion-row style="margin-top: 20px;">
+      <ion-col>
+        <img *ngIf="user.data.photoURL == null" src="https://lirp-cdn.multiscreensite.com/md/unsplash/dms3rep/multi/opt/photo-1457410129867-5999af49daf7-640w.jpg" alt="">
+        <img *ngIf="user.data.photoURL != null" src="{{user.data.photoURL}}" alt="">
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h3>{{user.data.displayName}}</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>{{user.data.email}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Administrador</ion-label>
+          <ion-toggle slot="end" id="themeToggle" [checked]="user.data.role == 'admin'" color="primary" (ionChange)="admin($event)"></ion-toggle>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-list-header (click)="materias()">Teste</ion-list-header>
+
+          <ion-item>
+            <ion-label>
+              <h3>Materia</h3>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    
+  </ion-grid>
+</ion-content>

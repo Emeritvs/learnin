@@ -1,12 +1,12 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject } from '@angular/core';
+import { Inject, Input } from '@angular/core';
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MenuController, Platform } from '@ionic/angular';
+import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/routes/auth.service';
 import { UserService } from 'src/app/routes/user.service';
 import { ComponentsRenderService } from 'src/app/services/components-render.service';
-import { DataService, Message } from 'src/app/services/data.service';
 import { EventEmitterService } from 'src/app/services/event-emitter.service';
 import { ProcessService } from 'src/app/services/process.service';
 import { ToasterService } from 'src/app/services/toaster.service';
@@ -17,32 +17,42 @@ import { ToasterService } from 'src/app/services/toaster.service';
   styleUrls: ['./home-desktop.page.scss'],
 })
 export class HomeDesktopPage implements OnInit {
-
+  @Input() teste : any;
   @ViewChild('content', { read: ViewContainerRef, static: true }) private  content : ViewContainerRef;
-  private currentUser: any = {
-    uid: null,
-    displayName: null
-  };
+  private currentId : any = {};
+  private currentUser: any = {};
+  private device : string = "desktop";
 
   constructor(
     private platform : Platform,
     private router : Router,
-    private data: DataService,
     private auth : AuthService,
     private components : ComponentsRenderService,
     private resolver: ComponentFactoryResolver,
     private toaster : ToasterService,
     private emitter : EventEmitterService,
     private user : UserService,
+    private route: ActivatedRoute,
+    private menu : MenuController,
     @Inject(DOCUMENT) private document : Document
-  ) { }
+  ) { 
+  }
 
-  async ngOnInit() {
-    (await this.user.getUserData()).subscribe(data => {
-      this.currentUser.uid = data['uid'];
-      this.currentUser.displayName = data['displayName'];
-      this.loadTheme(data);
-    });
+  ngOnInit() {
+    this.currentId = JSON.parse(localStorage.getItem('user'));
+    console.log(this.currentId);
+
+    if (this.platform.is('hybrid')) {
+      this.device = "hybrid";
+    }
+
+    if (this.currentId) {
+      this.loadUser(this.currentId);
+    }
+    else {
+      this.toaster.presentToast('Falha ao carregar usuário', 'danger', 2000);
+      this.auth.SignOut();
+    }
 
     if (this.emitter.subsVar == undefined) {    
       this.emitter.subsVar = this.emitter.invokeFirstComponentFunction
@@ -57,27 +67,31 @@ export class HomeDesktopPage implements OnInit {
         })
       });  
     } 
-    await this.abrirComponente(this.content, 'D','materiasComponent',{});
-    this.loadUser();
+    this.abrirComponente(this.content, 'D','materiasComponent',{});
   }
 
-  async loadUser(){
-    await this.user.getUserData().then(dados => {
-      // this.userDados = dados;
-    })
+  async loadUser(id : string){
+    (await this.user.getUsers()).subscribe(data => {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].id == id) {
+          this.currentUser = data[i].data;
+          console.error(this.currentUser);
+          this.loadTheme(this.currentUser);
+        }
+      }
+    });
   }
 
   loadTheme(data : any){
     document.documentElement.style.setProperty('--ion-color-learnin-primary', data.theme.color1);
     document.documentElement.style.setProperty('--ion-color-learnin-secondary', data.theme.color2);
-    document.documentElement.style.setProperty('--ion-toolbar-background', data.theme.color3);
-  }
-
-  getMessages(): Message[] {
-    return this.data.getMessages();
+    document.documentElement.style.setProperty('--ion-background-color', data.theme.color1);
+    document.documentElement.style.setProperty('--ion-item-background', data.theme.color1);
+    document.querySelector("body").style.setProperty('--ion-text-color', data.theme.color3);
   }
 
   async openContent(option : string){
+    this.menu.close();
     await this.abrirComponente(this.content, 'D', option,{});
   }
 
@@ -100,13 +114,12 @@ export class HomeDesktopPage implements OnInit {
                 if(container == 'D')
                 {
                   element.clear();
-                  console.log('Carregando container D')
                   // let componentRef = this.direito.createComponent(factory);
                   this.content.createComponent(factory);
                 }
                 else
                 {
-                  console.log('Não existe um container ativo ('+container+')   ');
+                  console.error('Não existe um container ativo ('+container+')');
                 }
 
                 res.dismiss();
@@ -114,25 +127,21 @@ export class HomeDesktopPage implements OnInit {
               }
               else
               {
-                alert('Falha ao carregar '+componentName);
-                console.log('Componente nào esta instanciado');
+                console.error('Falha ao carregar '+componentName);
+                console.error('Componente nào esta instanciado');
                 reject(false);
               }
             }
             catch(err)
             {
-              reject(false)
-              console.log(err);
+              reject(false);
+              console.error(err);
               res.dismiss();
-              this.toaster.presentToast(
-                'Falha ao carregar tela',
-                'danger',
-                4000
-              )
+              this.toaster.presentToast('Falha ao carregar tela', 'danger', 4000);
             }
           })
-          .catch(err => {})
-          .finally(()=> {})
+          .catch()
+          .finally();
     });
   }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { ModalConfirmPage } from '../pages/modal-confirm/modal-confirm.page';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,9 @@ export class ModalService {
       componentProps: {
         data: props
       }
+    });
+    modal.onDidDismiss().then((dados) => {
+      return dados;
     });
 
     await modal.present();

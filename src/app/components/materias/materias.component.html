@@ -1,16 +1,21 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+  <ion-toolbar color="learnin-primary">
+    <ion-buttons slot="start" *ngIf="device === 'desktop'"><ion-menu-button></ion-menu-button></ion-buttons>
     <ion-title>Matérias</ion-title>
-    <ion-icon name="add-outline" slot="end" (click)="criarMateria()"></ion-icon>
+    <ion-icon *ngIf="currentUser.role === 'admin'" name="add-outline" slot="end" (click)="criarMateria()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-grid>
   <ion-row>
 
-    <ion-col *ngFor="let item of materiasList">
+    <ion-col class="materia-col" [size]="gridOptions.materias" *ngFor="let item of materiasList; let i = index">
+
+      <div class="badge-div" *ngIf="currentUser.role === 'admin' && device === 'desktop'">
+        <ion-badge  color="danger"><ion-icon name="close" (click)="removerMateria(item.id)"></ion-icon></ion-badge>
+      </div>
       <ion-card (click)="abrirMateria(item)">
+      <img class="materia-icon" src="../../../assets//images/book.svg" [ngStyle]="{'background': item.data.color}"/>
         <ion-card-header>
           <ion-card-subtitle>{{item.data.nome}}</ion-card-subtitle>
           <ion-card-title>{{item.data.nome}}</ion-card-title>
