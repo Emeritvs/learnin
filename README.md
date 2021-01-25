@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="LearnIn" title="Learnin" src=".github/logo.png" />
+    <img alt="LearnIn" title="Learnin" src=".github/logo.png" width="50%" />
 </h1>
 
 <p align="center">
