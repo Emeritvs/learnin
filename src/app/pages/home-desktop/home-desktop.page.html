@@ -1,0 +1,91 @@
+<ion-menu side="start" menuId="first" contentId="teste" *ngIf="device === 'hybrid'">
+  <ion-content>
+
+    <ion-header>
+      <ion-toolbar color="learnin-primary">
+        <ion-item color="learnin-primary" (click)="openContent('dadosComponent')">
+          <ion-avatar>
+            <img src="{{currentUser.photoURL}}" alt="">
+          </ion-avatar>
+          <ion-label style="margin-left: 10px;">
+            <h3>{{currentUser.displayName}}</h3>
+            <p>{{currentUser.email}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-list style="padding: 0px;">
+      <!-- <ion-item color="learnin-secondary">
+        <ion-label><ion-icon name="home-outline"></ion-icon> &nbsp; Home</ion-label>
+      </ion-item> -->
+
+      <ion-item color="learnin-secondary" (click)="openContent('materiasComponent')">
+        <ion-label><ion-icon name="library-outline"></ion-icon> &nbsp; Matérias</ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="currentUser.role === 'admin'" color="learnin-secondary" (click)="openContent('alunosComponent')">
+        <ion-label><ion-icon name="people-outline"></ion-icon> &nbsp; Alunos</ion-label>
+      </ion-item>
+
+      <ion-item color="learnin-secondary" (click)="openContent('sobreComponent')">
+        <ion-label><ion-icon name="information-circle-outline"></ion-icon> &nbsp; Sobre</ion-label>
+      </ion-item>
+
+      <ion-item color="learnin-secondary" class="exit-item" (click)="logout()">
+        <ion-label><ion-icon name="exit-outline"></ion-icon> &nbsp; Sair</ion-label>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content color="learnin-secondary" id="teste">
+  <ion-grid class="container">
+    <ion-row>
+      <ion-col #menu *ngIf="device === 'desktop'" class="home-menu container" size="2">
+        <ion-header>
+          <ion-toolbar color="learnin-primary">
+            <ion-item color="learnin-primary" (click)="openContent('dadosComponent')">
+              <ion-avatar>
+                <img src="{{currentUser.photoURL}}" alt="">
+              </ion-avatar>
+              <ion-label style="margin-left: 10px;">
+                <h3>{{currentUser.displayName}}</h3>
+                <p>{{currentUser.email}}</p>
+              </ion-label>
+            </ion-item>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-list style="padding: 0px;">
+          <!-- <ion-item color="learnin-secondary">
+            <ion-label><ion-icon name="home-outline"></ion-icon> &nbsp; Home</ion-label>
+          </ion-item> -->
+
+          <ion-item color="learnin-secondary" (click)="openContent('materiasComponent')">
+            <ion-label><ion-icon name="library-outline"></ion-icon> &nbsp; Matérias</ion-label>
+          </ion-item>
+
+          <ion-item *ngIf="currentUser.role === 'admin'" color="learnin-secondary" (click)="openContent('alunosComponent')">
+            <ion-label><ion-icon name="people-outline"></ion-icon> &nbsp; Alunos</ion-label>
+          </ion-item>
+
+          <ion-item color="learnin-secondary" (click)="openContent('sobreComponent')">
+            <ion-label><ion-icon name="information-circle-outline"></ion-icon> &nbsp; Sobre</ion-label>
+          </ion-item>
+
+          <ion-item color="learnin-secondary" class="exit-item" (click)="logout()">
+            <ion-label><ion-icon name="exit-outline"></ion-icon> &nbsp; Sair</ion-label>
+          </ion-item>
+
+        </ion-list>
+      </ion-col>
+      <ion-col class="container">
+        <div #content>
+
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="learnin-primary">
+    <ion-icon class="cursor-pointer" name="close-outline" slot="start" (click)="closeModal()"></ion-icon>
+    <ion-title>Nova Matéria</ion-title>
+    <ion-icon class="cursor-pointer" name="save-outline" slot="end" (click)="criar()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="learnin-secondary" style="height: calc(100vh - 44px);">
+  <ion-list>
+    <ion-item>
+      <ion-label>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="materia.nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Descrição</ion-label>
+      <ion-input [(ngModel)]="materia.descricao"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>

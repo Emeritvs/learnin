@@ -1,0 +1,103 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+ion-header {
+    ion-toolbar {
+        ion-icon {
+            font-size: 25px;
+            margin: 0px 15px;
+            cursor: pointer;
+
+            --background: var(--ion-color-learning-primary);
+        }
+    }
+}
+
+.fullscreen-modal {
+  --width: 80%;
+  --height: 80%;
+}
+
+.alert-modal {
+  --width: 20%;
+  --height: 20%;
+}
+
+:root {
+    //Learn In Theme 
+    --ion-color-learnin-primary: #5d66d3;
+    --ion-color-learnin-secondary: #353a85;
+    --ion-color-learnin-tertiary: #d67086;
+
+    --ion-color-pokemongo: #1c8797;
+    --ion-color-pokemongo-rgb: 28,135,151;
+    --ion-color-pokemongo-contrast: #ffffff;
+    --ion-color-pokemongo-contrast-rgb: 255,255,255;
+    --ion-color-pokemongo-shade: #197785;
+    --ion-color-pokemongo-tint: #3393a1;
+}
+
+.ion-color-pokemongo {
+    --ion-color-base: var(--ion-color-pokemongo);
+    --ion-color-base-rgb: var(--ion-color-pokemongo-rgb);
+    --ion-color-contrast: var(--ion-color-pokemongo-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-pokemongo-contrast-rgb);
+    --ion-color-shade: var(--ion-color-pokemongo-shade);
+    --ion-color-tint: var(--ion-color-pokemongo-tint);
+  }
+  .ion-color-learnin-primary {
+    --ion-color-base: var(--ion-color-learnin-primary) !important;
+    --ion-color-base-rgb: 255,255,0;
+    // --ion-color-contrast: silver;
+    // --ion-color-contrast-rgb: 0,0,0;
+    --ion-color-shade: mix(#000, var(--ion-color-learnin-primary), 12%);
+    --ion-color-tint: mix(#fff, var(--ion-color-learnin-primary), 10%)
+  }
+
+  .ion-color-learnin-secondary {
+    --ion-color-base: var(--ion-color-learnin-secondary) !important;
+    --ion-color-base-rgb: 255,255,0;
+    // --ion-color-contrast: silver;
+    // --ion-color-contrast-rgb: 0,0,0;
+    --ion-color-shade: mix(#000, var(--ion-color-learnin-secondary), 12%);
+    --ion-color-tint: mix(#fff, var(--ion-color-learnin-secondary), 10%);
+  }
+
+  .ion-color-learnin-tertiary {
+    --ion-color-base: var(--ion-color-learnin-tertiary) !important;
+    --ion-color-base-rgb: 255,255,0;
+    // --ion-color-contrast: silver;
+    // --ion-color-contrast-rgb: 0,0,0;
+    --ion-color-shade: mix(#000, var(--ion-color-learnin-tertiary), 12%);
+    --ion-color-tint: mix(#fff, var(--ion-color-learnin-tertiary), 10%);
+  }
+
+.cursor-pointer {
+  cursor: pointer;
+}

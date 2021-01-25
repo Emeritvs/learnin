@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="learnin-primary">
+    <ion-buttons slot="start" *ngIf="device === 'desktop'"><ion-menu-button></ion-menu-button></ion-buttons>
+    <ion-title>Meus Dados</ion-title>
+    <ion-icon name="save-outline" slot="end" (click)="atualizarDados()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="learnin-secondary" style="height: calc(100vh - 44px);">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img *ngIf="user.photoURL != null" src="{{user.photoURL}}" alt="Editar foto" (click)="upload.click()">
+        <img *ngIf="user.photoURL == null" src="../../../assets/avatar.png" alt="Editar foto" (click)="upload.click()">
+        <input #upload type="file"  [(ngModel)]="newPhoto" style="display: none;" (change)="uploadFile($event)">
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-input [value]="user.displayName" style="text-align: center; font-size: 30px; opacity: 1;"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>{{user.email}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-list style="padding: 0px;">
+          <ion-list-header color="learnin-secondary">
+            Tema
+          </ion-list-header>
+  
+          <ion-list style="padding: 0px;">
+            <ion-item color="learnin-secondary">
+              <ion-label>Modo Escuro</ion-label>
+              <ion-toggle slot="end" id="themeToggle" [checked]="dark_mode" (ionChange)="escuro($event)"></ion-toggle>
+            </ion-item>
+          </ion-list>
+
+          <ion-item color="learnin-secondary">
+            <ion-label>Cabeçalhos e Itens</ion-label>
+            <ion-badge slot="end" [ngStyle]="{'background': user.theme.color1 }">
+              <ion-input type="color" #primary [(ngModel)]="user.theme.color1"></ion-input>
+            </ion-badge>
+          </ion-item>
+
+          <ion-item color="learnin-secondary">
+            <ion-label>Fundo e Listas</ion-label>
+            <ion-badge slot="end" [ngStyle]="{'background': user.theme.color2 }">
+              <ion-input type="color" #secondary [(ngModel)]="user.theme.color2"></ion-input>
+            </ion-badge>
+          </ion-item>
+
+          <ion-item color="learnin-secondary">
+            <ion-label>Texto</ion-label>
+            <ion-badge slot="end" [ngStyle]="{ 'background': user.theme.color3 }">
+              <ion-input type="color" #tertiary [(ngModel)]="user.theme.color3"></ion-input>
+            </ion-badge>
+          </ion-item>
+
+        </ion-list>
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

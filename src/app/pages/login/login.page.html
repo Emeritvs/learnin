@@ -1,0 +1,27 @@
+<ion-content class="gradient">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="illustration" style="height: 100%;">
+        <img src="../../../assets/images/study.svg" alt="">
+        <ion-label>Seu material de estudo em qualquer lugar.</ion-label>
+      </ion-col>
+      <ion-col size="4">
+
+        <ion-label class="title"> Learn<span>in</span> </ion-label>
+
+        <ion-item>
+          <ion-input [(ngModel)]="userData.login"  placeholder="Usuário" (keyup.enter)="login()"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-input type="password" [(ngModel)]="userData.password" placeholder="Senha" (keyup.enter)="login()"></ion-input>
+        </ion-item>
+        <ion-label class="recuperar" routerLink="/recuperar">Esqueceu a senha?</ion-label>
+      
+        <ion-button (click)="login()">Entrar</ion-button>
+        <ion-label class="recuperar" routerLink="/cadastro">Não possui uma conta? Crie uma aqui.</ion-label>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

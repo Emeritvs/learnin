@@ -1,0 +1,103 @@
+ion-header {
+    ion-toolbar {
+        ion-icon {
+            font-size: 25px;
+            margin: 0px 15px;
+        }
+    }
+}
+
+ion-grid {
+
+    ion-card {
+        cursor: pointer;
+
+    }
+
+    .materia-icon {
+        height: 200px;
+        width: 100%;
+        padding: 20px;
+        margin: 0 auto;
+    }
+
+    .badge-div {
+        height: 40px;
+        transform: translate(-3%, 0%);
+        width: 100%; 
+        display: flex; 
+        justify-content: flex-end;
+        z-index: 100;
+        position: absolute;
+
+        ion-badge {
+            display: none;
+            transition: display 2s ease-in-out;
+            color: white !important;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            z-index: 150;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+
+    // ion-badge {
+    //     float: right;
+    //     cursor: pointer !important;
+    //     height: 25px;
+    //     width: 25px;
+    //     border-radius: 50%;
+    //     display: block;
+    //     transition: 0.3s display;
+
+    //     ion-icon {
+    //         cursor: pointer !important;
+    //     }
+    // }
+
+
+    // ion-col:hover ion-badge {
+    //     display: flex;
+    //     float: right;
+    //     justify-content: center;
+    //     align-items: center;
+    //     height: 25px;
+    //     width: 25px;
+    //     border-radius: 50%;
+    //     cursor: pointer !important;
+
+    //     ion-icon {
+    //         cursor: pointer !important;
+    //     }
+    // }
+}
+
+.materia-col:hover {
+    .badge-div {
+        height: 40px;
+        transform: translate(-3%, 0%);
+        width: 100%; 
+        display: flex; 
+        justify-content: flex-end;
+        z-index: 100;
+        position: absolute;
+
+        ion-badge {
+            display: flex;
+            transition: display 3s ease-in-out;
+            color: white !important;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            z-index: 150;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="learnin-primary">
+    <ion-buttons slot="start" *ngIf="device === 'desktop'"><ion-menu-button></ion-menu-button></ion-buttons>
+    <ion-icon *ngIf="userOptions.action == 'modal'" name="close-outline" slot="start" (click)="closeModal()"></ion-icon>
+    <ion-title *ngIf="userOptions.action != 'modal'">Alunos</ion-title>
+    <ion-title *ngIf="userOptions.action == 'modal'">Adicionar Alunos</ion-title>
+    <ion-icon *ngIf="userOptions.action != 'modal'" name="add-outline" slot="end" (click)="criarMateria()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-toolbar color="learnin-primary">
+        <ion-searchbar showCancelButton="always"></ion-searchbar>
+      </ion-toolbar>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+
+
+      <ion-list *ngIf="userOptions.action != 'modal'">
+        <ion-item *ngFor="let item of usersList; let i = index" (click)="viewAluno(item)">
+          <ion-avatar>
+            <img *ngIf="item.data.photoURL" src="{{item.data.photoURL}}" alt="">
+            <img *ngIf="!item.data.photoURL" src="../../../assets/images/avatar.png" alt="">
+          </ion-avatar>
+          <ion-label>
+            <h3>{{item.data.displayName}}</h3>
+          </ion-label>
+          <ion-label>
+            <h3>Criado em: 25/11/2020</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-list *ngIf="userOptions.action == 'modal'">
+        <ion-item *ngFor="let item of usersList; let i = index" (click)="addAluno(item)">
+          <ion-avatar>
+            <img *ngIf="item.data.photoURL" src="{{item.data.photoURL}}" alt="">
+            <img *ngIf="!item.data.photoURL" src="../../../assets/images/avatar.png" alt="">
+          </ion-avatar>
+          <ion-label>
+            <h3>{{item.data.displayName}}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+    </ion-col>
+  </ion-row>
+</ion-grid>

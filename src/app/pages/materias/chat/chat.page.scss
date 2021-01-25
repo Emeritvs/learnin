@@ -1,0 +1,30 @@
+.message_left {
+    margin-right: auto;
+    --background: var(--ion-learnin-primary);
+    border-radius: 10px;
+    border: 1px solid black;
+    min-width: 20%;
+    max-width: 80%;
+}
+
+.message_right {
+    margin-left: auto;
+    --background: var(--ion-learnin-primary);
+    border-radius: 10px;
+    border: 1px solid black;
+    min-width: 20%;
+    max-width: 80%;
+}
+
+.timestamp {
+    justify-content: flex-end;
+    display: flex;
+}
+
+ion-grid {
+    margin: 0% 5%;
+
+    ion-row {
+        margin-bottom: 10px;
+    }
+}
