@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  login(){
-    this.auth.SignIn(this.userData.login, this.userData.password);
+  async login(){
+    await this.auth.SignIn(this.userData.login, this.userData.password);
   }
 }

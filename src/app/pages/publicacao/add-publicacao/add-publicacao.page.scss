@@ -1,9 +1,9 @@
 ion-content {
     margin: 50px;
-    .file-card {
-        width: 100px;
-        height: 100px;
-    }
+    // .file-card {
+    //     width: 100px;
+    //     height: 100px;
+    // }
 }
 
 .files-row {
@@ -48,4 +48,59 @@ ion-content {
 
 .files-grid {
     margin: 50px;
+}
+
+.file-col {
+    display: grid;
+
+    .badge-div {
+        height: 40px;
+        transform: translate(-3%, 140%);
+        width: 100%; 
+        display: flex; 
+        justify-content: flex-end;
+        z-index: 100;
+
+        ion-badge {
+            display: flex;
+            transition: max-height 1s ease-in-out;
+            color: white !important;
+            font-size: 25px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: sticky;
+            z-index: 150;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+
+    ion-card-content {
+        display: flex; 
+        align-items: center;
+        justify-content: center;
+
+        ion-avatar {
+            font-size: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    ion-card-content:before {
+        content:     "";
+        display:     block;
+        padding-top: 100%; /* initial ratio of 1:1*/
+    }
+    ion-text {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: flex;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+    }
 }

@@ -10,11 +10,11 @@
         <ion-label class="title"> Learn<span>in</span> </ion-label>
 
         <ion-item>
-          <ion-input [(ngModel)]="userData.login"  placeholder="Usuário"></ion-input>
+          <ion-input [(ngModel)]="userData.login"  placeholder="Usuário" (keyup.enter)="login()"></ion-input>
         </ion-item>
     
         <ion-item>
-          <ion-input type="password" [(ngModel)]="userData.password" placeholder="Senha"></ion-input>
+          <ion-input type="password" [(ngModel)]="userData.password" placeholder="Senha" (keyup.enter)="login()"></ion-input>
         </ion-item>
         <ion-label class="recuperar" routerLink="/recuperar">Esqueceu a senha?</ion-label>
       

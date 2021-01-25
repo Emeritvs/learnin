@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-icon name="arrow-back-outline" slot="start" (click)="closeModal()"></ion-icon>
+  <ion-toolbar color="learnin-primary">
+    <ion-icon class="cursor-pointer" name="close-outline" slot="start" (click)="closeModal()"></ion-icon>
     <ion-title>Nova Matéria</ion-title>
-    <ion-icon name="arrow-forward-outline" slot="end" (click)="criar()"></ion-icon>
+    <ion-icon class="cursor-pointer" name="save-outline" slot="end" (click)="criar()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="learnin-secondary" style="height: calc(100vh - 44px);">
   <ion-list>
     <ion-item>
       <ion-label>Nome</ion-label>

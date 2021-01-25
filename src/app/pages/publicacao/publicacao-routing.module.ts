@@ -11,10 +11,6 @@ const routes: Routes = [
   {
     path: 'add-publicacao',
     loadChildren: () => import('./add-publicacao/add-publicacao.module').then( m => m.AddPublicacaoPageModule)
-  },
-  {
-    path: 'view-publicacao',
-    loadChildren: () => import('./view-publicacao/view-publicacao.module').then( m => m.ViewPublicacaoPageModule)
   }
 ];
 

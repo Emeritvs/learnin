@@ -1,6 +1,6 @@
 .message_left {
     margin-right: auto;
-    --background: silver;
+    --background: var(--ion-learnin-primary);
     border-radius: 10px;
     border: 1px solid black;
     min-width: 20%;
@@ -9,7 +9,7 @@
 
 .message_right {
     margin-left: auto;
-    --background: #fbba54;
+    --background: var(--ion-learnin-primary);
     border-radius: 10px;
     border: 1px solid black;
     min-width: 20%;

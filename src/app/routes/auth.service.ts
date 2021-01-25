@@ -3,8 +3,8 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 // import { auth } from 'firebase/app';
-import { User } from '../interfaces/user';
 import { ToasterService } from '../services/toaster.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,8 @@ export class AuthService {
     public afAuth: AngularFireAuth,
     public router: Router,  
     public ngZone: NgZone,
-    public toast : ToasterService
+    public toast : ToasterService,
+    public users : UserService,
   ) {    
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -40,12 +41,18 @@ export class AuthService {
       .then((result) => {
         if (result) {
           if(result.user.emailVerified == true){
-            localStorage.setItem('user', result.user.uid);
-            
-            this.ngZone.run(() => {
-              this.router.navigate(['home-desktop']);
-            });
-            this.SetUserData(result.user);
+
+            const dados = {
+              uid: result.user.uid || "",
+              name: result.user.displayName || "",
+              email: result.user.email || "",
+              photoURL: result.user.photoURL || ""
+            };
+
+            this.users.user_id = dados.uid;
+            localStorage.setItem('user', JSON.stringify(dados.uid));
+            this.router.navigate(['home-desktop']);
+            // this.SetUserData(dados);
           }
           else {
             this.toast.presentToast('Conta não validada, acesse seu email e abra o link para concluir o cadastro', 'danger', 2000 )
@@ -104,8 +111,8 @@ export class AuthService {
   // }
 
   // Auth logic to run auth providers
-  AuthLogin(provider) {
-    return this.afAuth.signInWithPopup(provider)
+  async AuthLogin(provider) {
+    return await this.afAuth.signInWithPopup(provider)
     .then((result) => {
       console.warn(result);
       this.ngZone.run(() => this.router.navigate(['home-desktop']));
@@ -118,20 +125,21 @@ export class AuthService {
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(user) {
+  SetUserData(user : any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuarios/${user.uid}`);
-    const userData: User = {
+    const userData: any = {
       uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      emailVerified: user.emailVerified,
-      role: null,
+      email: user.email || '',
+      displayName: user.displayName || 'Sem Nome',
+      photoURL: user.photoURL || '../../assets/images/avatar.png',
+      emailVerified: user.emailVerified || '',
+      role: user.role || 'user',
       theme: {
-        color1: '#ffffff',
-        color2: '#ffffff',
-        color3: '#ffffff',
-      }
+        color1: user.color1 || '#5d66d3',
+        color2: user.color2 || '#353a85',
+        color3: user.color3 || '#ffffff',
+      },
+      materias: user.materias || []
     };
 
     return userRef.set(userData, {
@@ -145,6 +153,10 @@ export class AuthService {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
     })
+  }
+
+  setUserRole(id : string, dados : any){
+    return this.afs.collection('usuarios').doc(id).update(dados);
   }
 
 }

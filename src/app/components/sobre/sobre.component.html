@@ -1,7 +1,17 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+  <ion-toolbar color="learnin-primary">
+    <ion-buttons slot="start" *ngIf="device === 'desktop'"><ion-menu-button></ion-menu-button></ion-buttons>
     <ion-title>Sobre</ion-title>
     <ion-icon name="add-outline" slot="end"></ion-icon>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <h3>Projeto desenvolvido por: <a href="https://github.com/Emeritvs">Emeritvs</a> </h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

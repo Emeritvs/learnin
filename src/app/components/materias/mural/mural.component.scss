@@ -1,0 +1,20 @@
+ion-label {
+    display: flex !important;
+    align-items: center;
+
+    ion-avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        ion-icon {
+            font-size: 25px;
+        }
+    }
+}
+
+.empty-list {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

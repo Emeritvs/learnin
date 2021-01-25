@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
@@ -19,7 +17,7 @@ import { AddPageModule } from './pages/materias/add/add.module';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ChatPageModule } from './pages/materias/chat/chat.module';
 import { AddPublicacaoPageModule } from './pages/publicacao/add-publicacao/add-publicacao.module';
-import { ViewPublicacaoPageModule } from './pages/publicacao/view-publicacao/view-publicacao.module';
+import { ModalConfirmPageModule } from './pages/modal-confirm/modal-confirm.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,8 +36,8 @@ import { ViewPublicacaoPageModule } from './pages/publicacao/view-publicacao/vie
     //Modals
     AddPageModule,
     AddPublicacaoPageModule,
-    ViewPublicacaoPageModule,
-    ChatPageModule
+    ChatPageModule,
+    ModalConfirmPageModule
   ],
   providers: [
     StatusBar,

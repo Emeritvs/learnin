@@ -1,57 +1,106 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-icon name="arrow-back-outline" slot="start" (click)="closeModal()"></ion-icon>
+  <ion-toolbar color="learnin-primary">
+    <ion-icon name="close-outline" slot="start" style="cursor: pointer;" (click)="closeModal()"></ion-icon>
     <ion-title *ngIf="tipo === 'post'">Nova Publicação</ion-title>
     <ion-title *ngIf="tipo === 'arquivo'">Novo Arquivo</ion-title>
-    <span slot="end" (click)="salvar()">Salvar</span>
+    <span *ngIf="currentUser.role === 'admin' && data.action === 'add'" slot="end" style="cursor: pointer;" (click)="salvar()">Salvar</span>
+    <span *ngIf="currentUser.role === 'admin' && data.action === 'view-post'" slot="end" style="cursor: pointer;" (click)="apagar()">Apagar</span>
+    <span *ngIf="data.action === 'view-file'" slot="end" style="cursor: pointer;" (click)="startDownload(fileUrl)">Baixar</span>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item>
-    <ion-label>Tipo</ion-label>
+<ion-content color="learnin-secondary">
+
+  <ion-item *ngIf="data.action === 'add'">
+    <ion-label>Tipo: </ion-label>
     <ion-select interface="popover" [(ngModel)]="tipo">
       <ion-select-option value="post">Publicação</ion-select-option>
       <ion-select-option value="arquivo">Arquivo</ion-select-option>
     </ion-select>
   </ion-item>
 
-  <ion-item *ngIf="tipo === 'post'">
-    <ion-label>Titulo:</ion-label>
-    <ion-input [(ngModel)]="form.titulo"></ion-input>
-  </ion-item>
-
-  <ion-item *ngIf="tipo === 'post'">
-    <ion-label>Descricao</ion-label>
-    <textarea [(ngModel)]="form.descricao" name="" id="" cols="30" rows="10"></textarea>
-  </ion-item>
-
   <ion-item>
+    <ion-label>Titulo: </ion-label>
+    <ion-input [(ngModel)]="form.titulo" [disabled]="data.action === 'view-post' || data.action === 'view-file'"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="data.action === 'view-file' || data.action === 'view-post'">
+    <ion-label>Data de criação: </ion-label>
+    <ion-input [(ngModel)]="form.createAt" [disabled]="data.action === 'view-post' || data.action === 'view-file'"></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="tipo === 'post' || data.action === 'view-post'">
+    <ion-label>Descrição: </ion-label>
+    <ion-textarea [(ngModel)]="form.descricao" rows="10" style="background: transparent;"></ion-textarea>
+  </ion-item>
+
+  <!-- <ion-item *ngIf="tipo === 'post' || data.action === 'view-post'">
+    <ion-label>Descrição:</ion-label>
+    <ion-input [(ngModel)]="form.descricao" [disabled]="data.action === 'view-post''"></ion-input>
+  </ion-item> -->
+
+  <ion-item *ngIf="data.action != 'view-file'">
     <ion-label>Anexos</ion-label>
   </ion-item>
-
-  <ion-grid class="files-grid">
-    <ion-row class="files-row">
-      <div *ngFor="let file of arquivos; let i = index">
-        <ion-card class="file-card">
-          <ion-badge color="danger"><ion-icon name="close" (click)="removerArquivo(i)"></ion-icon></ion-badge>
-          <ion-card-content>
-            <ion-icon name="document"></ion-icon>
-          </ion-card-content>
-        </ion-card>
+  <ion-item>
+    <ion-grid class="files-grid">   
+      <!-- ADD ACTION--> 
+      <ion-row *ngIf="data.action == 'add'" style="margin: 5% 0%;">
+        <ion-col class="file-col" size="3" *ngFor="let file of arquivos; let i = index">
+          <div class="badge-div">
+            <ion-badge *ngIf="data.action === 'add'" color="primary" (click)="removerArquivo(i)">
+              <ion-icon name="close"></ion-icon>
+            </ion-badge>
   
-        <ion-label>{{i}} - {{file.name}}</ion-label>
-      </div>
-    </ion-row>
+            <ion-badge *ngIf="data.action !== 'add'" color="primary" (click)="startDownload(file.url)">
+              <ion-icon name="cloud-download-outline"></ion-icon>
+            </ion-badge>
+          </div>
+          
+          <ion-card>
+            <ion-card-content>
+              <ion-avatar>
+                <ion-icon name="folder"></ion-icon>
+              </ion-avatar>
+            </ion-card-content>
+          </ion-card>
   
-    <ion-row>
-      <ion-fab-button (click)="file.click()">
-        <ion-icon name="add">
-        </ion-icon>
-      </ion-fab-button>
-      <input type="file" #file (change)="selecionarArquivo($event)" multiple name="image" style="display: none;" />
-    </ion-row>
-  </ion-grid>
+          <ion-text>{{i}} - {{file.name}}</ion-text>
+        </ion-col>
+      </ion-row>
 
-
+      <!-- VIEW ACTION--> 
+      <ion-row *ngIf="data.action != 'add'" style="margin: 5% 0%;">
+        <ion-col class="file-col" size="3" *ngFor="let anexo of form.anexos; let i = index">
+          <div class="badge-div">
+            <ion-badge *ngIf="data.action === 'add'" color="primary" (click)="removerArquivo(i)">
+              <ion-icon name="close"></ion-icon>
+            </ion-badge>
+  
+            <ion-badge *ngIf="data.action !== 'add'" color="primary" (click)="startDownload(file.url)">
+              <ion-icon name="cloud-download-outline"></ion-icon>
+            </ion-badge>
+          </div>
+          
+          <ion-card>
+            <ion-card-content>
+              <ion-avatar>
+                <ion-icon name="folder"></ion-icon>
+              </ion-avatar>
+            </ion-card-content>
+          </ion-card>
+  
+          <ion-text>{{i}} - {{anexo.name}}</ion-text>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row *ngIf="data.action === 'add'">
+        <ion-fab-button (click)="file.click()">
+          <ion-icon name="add">
+          </ion-icon>
+        </ion-fab-button>
+        <input type="file" #file (change)="selecionarArquivo($event)" multiple name="image" style="display: none;" />
+      </ion-row>
+    </ion-grid>
+  </ion-item>
 </ion-content>

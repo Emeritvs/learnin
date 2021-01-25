@@ -5,16 +5,12 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home-desktop',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'home-desktop',
     loadChildren: () => import('./pages/home-desktop/home-desktop.module').then( m => m.HomeDesktopPageModule)
-  },
-  {
-    path: 'home-mobile',
-    loadChildren: () => import('./pages/home-mobile/home-mobile.module').then( m => m.HomeMobilePageModule)
   },
   {
     path: 'publicacao',
@@ -35,6 +31,18 @@ const routes: Routes = [
   {
     path: 'verificacao',
     loadChildren: () => import('./pages/verificacao/verificacao.module').then( m => m.VerificacaoPageModule)
+  },
+  {
+    path: 'modal-confirm',
+    loadChildren: () => import('./pages/modal-confirm/modal-confirm.module').then( m => m.ModalConfirmPageModule)
+  },
+  {
+    path: 'aluno',
+    loadChildren: () => import('./pages/aluno/aluno.module').then( m => m.AlunoPageModule)
+  },
+  {
+    path: 'materias',
+    loadChildren: () => import('./pages/materias/materias.module').then( m => m.MateriasPageModule)
   },
 ];
 
