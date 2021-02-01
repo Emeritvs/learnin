@@ -32,7 +32,7 @@ A ideia do projeto foi desenvolver uma aplicação web que seja armazenada em al
 - [Versão Web Funcional](https://projeto-sdv.web.app)
 - [Versão App] Para testar a versão app (PWA) do site, será necessário executar os passos do tópico <a href="#-instalação">Instalação</a>.
 
-## 🔖 Instalação
+## 🔧 Instalação
 
 Para executar o projeto em sua máquina/dispostivo, serão necessários os seguintes recursos instalados:
 
